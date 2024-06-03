@@ -13,6 +13,8 @@ Route::get('/tanya', [ContentController::class, 'create'])->name('content.create
 
 Route::post('/tanya/store', [ContentController::class, 'store'])->name('content.store');
 
+Route::get('/search', [ContentController::class, 'search'])->name('content.search');
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

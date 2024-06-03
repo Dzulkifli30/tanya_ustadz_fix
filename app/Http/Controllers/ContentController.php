@@ -49,6 +49,18 @@ class ContentController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        if ($query) {
+            $posts = Content::where('pertanyaan', 'like', '%' . $query . '%')->paginate(4);
+        } else {
+            $posts = Content::paginate(4);
+        }
+
+        return view('search', ['posts' => $posts]);
+    }
     /**
      * Display the specified resource.
      */

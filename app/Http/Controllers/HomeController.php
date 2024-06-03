@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -35,7 +36,9 @@ class HomeController extends Controller
     }
     public function ustadz()
     {
-        return view('ustadz');
+        $show = Content::whereNull('jawaban')->latest()->paginate(2);
+
+        return view('ustadz', compact('show'));
     }
     public function addUser(Request $request)
     {
