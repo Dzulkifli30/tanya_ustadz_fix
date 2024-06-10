@@ -3,7 +3,8 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+import Swal from 'sweetalert2';
+window.Swal = Swal;
 import './bootstrap';
 import { createApp } from 'vue';
 

@@ -19,6 +19,7 @@
             flex-direction: column;
             align-items: center;
         }
+
         video {
             width: 100%;
             max-width: 100%;
@@ -31,47 +32,49 @@
     <nav class="bg-[#2254C5] border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://media.tenor.com/NwpHYmzgh0gAAAAi/yelan-genshin-impact.gif" class="h-8" alt="logo tanyaustadz" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TanyaUstadz</span>
+                <img src="{{ asset('storage/logo.png')}}" class="h-10" alt="logo tanyaustadz" />
+                <span
+                    class="self-center text-2xl italic font-semibold whitespace-nowrap dark:text-white">TANYAUSTADZ</span>
             </a>
             <button data-collapse-toggle="navbar-default" type="button"
                 class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="navbar-default" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M1 1h15M1 7h15M1 13h15" />
                 </svg>
             </button>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <div>
-                        <button type="button" id="profileButton"
-                            class="flex flex-col items-center text-white focus:outline-none">
-                            <div class="flex items-center justify-center w-10 h-10 bg-white rounded-full">
-                                <svg class="w-8 h-8 text-[#2254C5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 14c-3.866 0-7 3.134-7 7h14c0-3.866-3.134-7-7-7zm0-4a4 4 0 100-8 4 4 0 000 8z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold">{{ Auth::user()->name }}</span>
-                        </button>
-                    </div>
-                    <div id="profileMenu"
-                        class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="profileButton">
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
-                                Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                @csrf
-                            </form>
+                <div>
+                    <button type="button" id="profileButton"
+                        class="flex flex-col items-center text-white focus:outline-none">
+                        <div class="flex items-center justify-center w-10 h-10 bg-white rounded-full">
+                            <svg class="w-8 h-8 text-[#2254C5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 14c-3.866 0-7 3.134-7 7h14c0-3.866-3.134-7-7-7zm0-4a4 4 0 100-8 4 4 0 000 8z">
+                                </path>
+                            </svg>
                         </div>
+                        <span class="text-sm font-bold">{{ Auth::user()->name }}</span>
+                    </button>
+                </div>
+                <div id="profileMenu"
+                    class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="profileButton">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                            role="menuitem">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                            @csrf
+                        </form>
                     </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -92,15 +95,21 @@
                     <label for="pertanyaan" class="block mb-2 text-sm font-medium text-gray-900">Rekam Jawaban</label>
                     <div class="video-container">
                         <video id="preview" autoplay muted></video>
-                        <button type="button" id="startRecord" class="px-3 py-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 my-2">Mulai Rekam</button>
-                        <button type="button" id="stopRecord" class="px-3 py-2 text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 my-2" disabled>Berhenti Rekam</button>
+                        <button type="button" id="startRecord"
+                            class="px-3 py-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 my-2">Mulai
+                            Rekam</button>
+                        <button type="button" id="stopRecord"
+                            class="px-3 py-2 text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 my-2"
+                            disabled>Berhenti Rekam</button>
                         <video id="recorded" controls class="hidden mt-4"></video>
                     </div>
                 </div>
                 <div class="mx-4 sm:mx-6 md:mx-8">
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                     <input type="hidden" name="video" id="videoData">
-                    <button type="submit" class="w-full text-white bg-[#2254C5] hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center">Kirim jawaban</button>
+                    <button type="submit"
+                        class="w-full text-white bg-[#2254C5] hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center">Kirim
+                        jawaban</button>
                 </div>
             </form>
         </div>

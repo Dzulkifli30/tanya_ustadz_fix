@@ -95,7 +95,7 @@ class ContentController extends Controller
             $post->save();
         }
 
-        return redirect()->back()->with('success', 'Jawaban berhasil dikirim.');
+        return redirect()->route('content.index')->with('success', 'Jawaban berhasil dikirim.');
     }
     /**
      * Update the specified resource in storage.

@@ -18,9 +18,9 @@
     <nav class="bg-[#2254C5] border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
             <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://media.tenor.com/NwpHYmzgh0gAAAAi/yelan-genshin-impact.gif" class="h-8"
-                    alt="logo tanyaustadz" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TanyaUstadz</span>
+                <img src="{{ asset('storage/logo.png')}}" class="h-10" alt="logo tanyaustadz" />
+                <span
+                    class="self-center text-2xl italic font-semibold whitespace-nowrap dark:text-white">TANYAUSTADZ</span>
             </a>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <div class="relative inline-block text-left">
@@ -63,7 +63,7 @@
             <div class="bg-white shadow-2xl drop-shadow-2xl rounded-lg p-6">
                 <h2 class="text-2xl font-semibold text-gray-900 mb-4">Tambah Ustadz</h2>
                 <form action="{{ route('add.ustadz') }}" method="POST">
-                @csrf
+                    @csrf
                     <div class="mb-4">
                         <label for="name" class="block text-gray-700 font-bold mb-2">Nama Ustadz:</label>
                         <input type="text" id="name" name="name"
@@ -96,23 +96,28 @@
                             Email
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            <span class="sr-only">Edit</span>
+                            <span class="sr-only">Delete</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($show as $items)
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{ $items->name }}
-                        </th>
-                        <td class="px-6 py-4">
-                        {{ $items->email }}
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
-                        </td>
-                    </tr>
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ $items->name }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $items->email }}
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <form action="{{ route('ustadz.destroy', $items->id) }}" method="POST"
+                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="font-medium text-red-600 hover:underline">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

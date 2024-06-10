@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile GWEJ</title>
+    <title>pertanyaan - {{ $post->pertanyaan}}</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -18,9 +18,9 @@
     <nav class="bg-[#2254C5] border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://media.tenor.com/NwpHYmzgh0gAAAAi/yelan-genshin-impact.gif" class="h-8"
-                    alt="logo tanyaustadz" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TanyaUstadz</span>
+                <img src="{{ asset('storage/logo.png')}}" class="h-10" alt="logo tanyaustadz" />
+                <span
+                    class="self-center text-2xl italic font-semibold whitespace-nowrap dark:text-white">TANYAUSTADZ</span>
             </a>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 @if (Auth::user() != null)
@@ -93,7 +93,7 @@
                     <h5 class="text-xl font-medium text-white">Jawab</h5>
                 </div>
                 <div class="mx-4 sm:mx-6 md:mx-8">
-                    <p class="block text-sm font-normal text-gray-600">Oleh: penanya
+                    <p class="block text-sm font-normal text-gray-600">Oleh: ustadz
                     </p>
                 </div>
                 @if ($post->jawaban == null)
@@ -124,12 +124,22 @@
 
 
     <!-- Footer -->
-    <footer class="rounded-lg shadow flex bottom-0 left-0 w-full">
-        <div class="w-full max-w-screen-xl mx-auto md:py-8 border-t-4 border-[#2254C5]">
-            <!-- <hr class="my-6 border-t-4 border-[#2254C5] mx-0 lg:my-8" /> -->
-            <span class="block text-lg font-bold sm:text-center">KELOMPOK 2 WORKSHOP WEB MULTIMEDIA</span>
-        </div>
-    </footer>
+    @if ($post->jawaban == null)
+        <footer class="rounded-lg shadow fixed bottom-0 left-0 w-full">
+            <div class="w-full max-w-screen-xl mx-auto md:py-8 border-t-4 border-[#2254C5]">
+                <!-- <hr class="my-6 border-t-4 border-[#2254C5] mx-0 lg:my-8" /> -->
+                <span class="block text-lg font-bold sm:text-center">KELOMPOK 2 WORKSHOP WEB MULTIMEDIA</span>
+            </div>
+        </footer>
+    @else
+        <footer class="rounded-lg shadow flex bottom-0 left-0 w-full">
+            <div class="w-full max-w-screen-xl mx-auto md:py-8 border-t-4 border-[#2254C5]">
+                <!-- <hr class="my-6 border-t-4 border-[#2254C5] mx-0 lg:my-8" /> -->
+                <span class="block text-lg font-bold sm:text-center">KELOMPOK 2 WORKSHOP WEB MULTIMEDIA</span>
+            </div>
+        </footer>
+    @endif
+
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com/"></script>

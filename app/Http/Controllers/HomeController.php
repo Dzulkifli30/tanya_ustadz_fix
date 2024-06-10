@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -37,8 +39,27 @@ class HomeController extends Controller
     public function ustadz()
     {
         $show = Content::whereNull('jawaban')->latest()->paginate(2);
+        $user = Auth::user();
+        return view('ustadz', compact('show', 'user'));
+    }
 
-        return view('ustadz', compact('show'));
+    public function updateuser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+        $user->name = $request->name;
+
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('dash.ustadz')->with('success', 'Profil berhasil diperbarui');
     }
     public function addUser(Request $request)
     {
@@ -55,5 +76,12 @@ class HomeController extends Controller
         $cek = Validator::make($request->all(),$rules);
         return redirect()->route('dash.admin')->with(['success' => 'Data Berhasil Disimpan!']);
 
+    }
+    public function destroy($id)
+    {
+        $ustadz = User::findOrFail($id);
+        $ustadz->delete();
+
+        return redirect()->back()->with('success', 'Ustadz berhasil dihapus.');
     }
 }

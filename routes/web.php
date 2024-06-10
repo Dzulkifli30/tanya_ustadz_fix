@@ -22,10 +22,12 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/dash-admin', [HomeController::class, 'admin'])->name('dash.admin');
     Route::post('/dash-admin/add-user', [HomeController::class, 'addUser'])->name('add.ustadz');
+    Route::delete('/dash-admin/delete/{id}', [HomeController::class, 'destroy'])->name('ustadz.destroy');
 });
 
 Route::group(['middleware' => ['role:ustadz']], function () {
     Route::get('/dash-ustadz', [HomeController::class, 'ustadz'])->name('dash.ustadz');
     Route::get('/jawab/{id}', [ContentController::class, 'jawab'])->name('content.jawab');
     Route::post('/submit-jawaban', [ContentController::class, 'kirimJawaban'])->name('kirim.jawaban');
+    Route::post('/update-user', [HomeController::class, 'updateUser'])->name('ustadz.update');
 });

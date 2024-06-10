@@ -38,14 +38,14 @@
                         class="bg-gray-200 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="name@company.com" required />
                 </div>
-                <div>
+                <div class="pb-6">
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your
                         password</label>
                     <input type="password" name="password" id="password" placeholder="••••••••"
                         class="bg-gray-200 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         required />
                 </div>
-                <div class="flex items-start">
+                <!-- <div class="flex items-start">
                     <div class="flex items-start">
                         <div class="flex items-center h-5">
                             <input id="remember" type="checkbox" value=""
@@ -56,7 +56,7 @@
                     </div>
                     <a href="#" class="ms-auto text-sm text-[#2254C5] hover:underline">Lost
                         Password?</a>
-                </div>
+                </div> -->
                 <button type="submit"
                     class="w-full text-white bg-[#2254C5] hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center">Login</button>
             </form>

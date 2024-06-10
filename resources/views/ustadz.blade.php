@@ -8,7 +8,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -18,9 +19,9 @@
     <nav class="bg-[#2254C5] border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
             <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://media.tenor.com/NwpHYmzgh0gAAAAi/yelan-genshin-impact.gif" class="h-8"
-                    alt="logo tanyaustadz" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TanyaUstadz</span>
+                <img src="{{ asset('storage/logo.png')}}" class="h-10" alt="logo tanyaustadz" />
+                <span
+                    class="self-center text-2xl italic font-semibold whitespace-nowrap dark:text-white">TANYAUSTADZ</span>
             </a>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <div class="relative inline-block text-left">
@@ -63,19 +64,26 @@
         <div class="w-full max-w-xs mr-4">
             <div class="bg-white shadow-2xl drop-shadow-2xl rounded-lg p-6">
                 <h2 class="text-2xl font-semibold text-gray-900 mb-4">edit Profil</h2>
-                <form action="#" method="POST">
+                <form action="{{ route('ustadz.update') }}" method="POST">
                     @csrf
                     <div class="mb-4">
                         <label for="name" class="block text-gray-700 font-bold mb-2">Nama Ustadz:</label>
                         <input type="text" id="name" name="name"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Masukkan nama">
+                            placeholder="Masukkan nama" value="{{ old('name', $user->name) }}">
                     </div>
                     <div class="mb-4">
-                        <label for="email" class="block text-gray-700 font-bold mb-2">Password Baru:</label>
-                        <input type="email" id="email" name="email"
+                        <label for="password" class="block text-gray-700 font-bold mb-2">Password Baru:</label>
+                        <input type="password" id="password" name="password"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Masukkan email">
+                            placeholder="Masukkan password baru">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password_confirmation" class="block text-gray-700 font-bold mb-2">Konfirmasi
+                            Password:</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Konfirmasi password baru">
                     </div>
                     <div class="flex items-center justify-between">
                         <button type="submit"
@@ -120,6 +128,7 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.getElementById('profileButton').addEventListener('click', function () {
             var profileMenu = document.getElementById('profileMenu');
