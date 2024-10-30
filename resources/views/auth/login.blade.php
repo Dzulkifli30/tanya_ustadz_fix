@@ -18,7 +18,7 @@
     <nav class="bg-[#2254C5] border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://media.tenor.com/NwpHYmzgh0gAAAAi/yelan-genshin-impact.gif" class="h-8"
+                <img src="{{ asset('assets/logo.png')}}" class="h-8"
                     alt="logo tanyaustadz" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TanyaUstadz</span>
             </a>

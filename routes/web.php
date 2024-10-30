@@ -5,9 +5,17 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('dash.admin');
+    } else {
+        return redirect()->route('content.index');
+    }
+})->name('welcome');
+
 Route::get('/detail/{id}', [ContentController::class, 'show'])->name('content.show');
 
-Route::get('/', [ContentController::class, 'index'])->name('content.index');
+Route::get('/home', [ContentController::class, 'index'])->name('content.index');
 
 Route::get('/tanya', [ContentController::class, 'create'])->name('content.create');
 
@@ -17,7 +25,7 @@ Route::get('/search', [ContentController::class, 'search'])->name('content.searc
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/dash-admin', [HomeController::class, 'admin'])->name('dash.admin');
